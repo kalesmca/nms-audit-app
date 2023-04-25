@@ -7,5 +7,20 @@
 # Firebase config
     npm i firebase
 
+    firebase login
+
+    firebase init
+
+    npm build
+
+    firebase deploy
+
+# Reference
+
+
+# NMS Audit Website
+    https://nms-audit.web.app/
+    https://nms-audit.firebaseapp.com/
+
 
 
