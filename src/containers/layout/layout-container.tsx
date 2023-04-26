@@ -1,20 +1,18 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 // import HeaderComponent from './components/header';
 // import SideBarComponent from './components/sidebar';
 import "../../index.css";
 
 import { Outlet, Link } from "react-router-dom";
+import { auth } from '../../firebase-config';
 
 const LayoutContainer = () => {
+    useEffect(()=>{
+        console.log(auth?.currentUser?.photoURL);
+        
+    })
     return (
         <div>
-            {/* <div>
-                <HeaderComponent />
-
-            </div>
-            <div>
-                <SideBarComponent />
-            </div> */}
             <div className="app">
                 <input type="checkbox" id="check" />
                 <header className="header-container">
@@ -30,43 +28,32 @@ const LayoutContainer = () => {
                     </div>
 
                 </header>
-
-                <div className="sidebar">
-                    {/* <center>
-                        <div>Cockpit</div>
-                    </center> */}
-                    <nav>
-                    
-                        <div className='link'>
-                            <i className="fas fa-home"></i>
-                            <Link to="/">Dashboard</Link>
-                        </div>
-                        <div>
-                        <i className="fas fa-address-card"></i>
-                            <Link to="/member-list">User List</Link>
-                        </div>
-                        <div>
-                            <i className="fas fa-chart-line"></i>
-                            <Link to="/member-info">Create-User</Link>
-                        </div>
-                        
-                    </nav>
-{/*                     
-                    <a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a>
-                    <a href="#"><i class="fas fa-address-card"></i><span>360 Feature</span></a>
-                    <a href="#"><i class="fas fa-chart-line"></i><span>Customers</span></a>
-                    <a href="#"><i class="fab fa-amazon-pay"></i><span>Drag</span></a>
-                    <a href="#"><i class="fas fa-star"></i><span>List</span></a> */}
-                </div>
                
+                    {/* auth?.currentUser?.email === "kaleesmca1990@gmail.com" ?  */}
+                    <div className="sidebar"> 
 
-                <div className="container">
-                    <Outlet/>
+                        <nav>
+
+                            <div className='link'>
+                                <i className="fas fa-home"></i>
+                                <Link to="/">Dashboard</Link>
+                            </div>
+                            <div>
+                                <i className="fas fa-address-card"></i>
+                                <Link to="/member-list">User List</Link>
+                            </div>
+                            <div>
+                                <i className="fas fa-chart-line"></i>
+                                <Link to="/member-info">Create-User</Link>
+                            </div>
+
+                        </nav>
+
+                    </div>
                 
-            
-      </div>
-
-
+                <div className="container">
+                    <Outlet />
+                </div>
             </div>
         </div>
     )

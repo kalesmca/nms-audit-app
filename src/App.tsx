@@ -5,7 +5,7 @@ import DashboardComponent from "./containers/dashboard/dashboardComponent";
 import MemberListComponent from "./containers/memberlist/memberListComponent";
 import MemberInfoComponent from "./containers/member-create-view/memberInfoComponent";
 import NotFoundComponent from "./containers/not-found/NotFoundComponent";
-
+import LoginComponent from "./containers/login/loginComponent";
 import './index.css'
 
 export default () => {
@@ -14,7 +14,9 @@ export default () => {
       <div className="w-100">
       <Routes>
                         <Route path="/" element={<LayoutContainer />}>
-                        <Route index element={<DashboardComponent />} />
+                        <Route index element={<LoginComponent />} />
+                        <Route path="dashboard" element={<DashboardComponent />} />
+
                         <Route path="member-list" element={<MemberListComponent />} />
                         <Route path="member-info" element={<MemberInfoComponent />} />
                         <Route path="*" element={<NotFoundComponent />} />
