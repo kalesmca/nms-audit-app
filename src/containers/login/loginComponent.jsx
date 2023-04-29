@@ -18,7 +18,7 @@ const LoginComponent = () =>{
             await signOut(auth);
         }
         catch(err){
-            console.log('signout  err');
+            console.log('signout err err');
         }
     }
     return(

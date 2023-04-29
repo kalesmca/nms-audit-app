@@ -36,7 +36,7 @@ const LayoutContainer = () => {
 
                             <div className='link'>
                                 <i className="fas fa-home"></i>
-                                <Link to="/">Dashboard</Link>
+                                <Link to="/dashboard">Dashboard</Link>
                             </div>
                             <div>
                                 <i className="fas fa-address-card"></i>
@@ -45,6 +45,14 @@ const LayoutContainer = () => {
                             <div>
                                 <i className="fas fa-chart-line"></i>
                                 <Link to="/member-info">Create-User</Link>
+                            </div>
+                            <div>
+                                <i className="fas fa-chart-line"></i>
+                                <Link to="/credit">Credit Amount</Link>
+                            </div>
+                            <div>
+                                <i className="fas fa-chart-line"></i>
+                                <Link to="/debit">Debit Amount</Link>
                             </div>
 
                         </nav>
