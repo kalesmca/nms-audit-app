@@ -1,0 +1,41 @@
+DB Requirements
+==================
+
+MemberList
+===========
+memberId
+memberType: "MEMBER" || "DONAR" || OTHERS
+name: <Member Name> || <Donar Name> || <other names>
+dob:<date of birth>
+mobileNumber: <contact>
+email: <email>
+bloodGroup:
+native:
+
+Transactions
+===========
+	transactionList:[
+		{
+			memberId: <credit or debit belongs to one person>
+			transaction_id
+			transactionTYpe: <Credit> || <Debit>
+			transactionFor: if(Credit> => <membership> || <donation> || <other>
+			
+			=> Event is an object => it's should value and ID and eventDate
+		    event: if(membership) =>  <mothly_membership>  else if(donation) => <donation_for_event> else=> <other>   
+if(Debit) event: EVENTS || OTHERS
+			comments: <we can add what purpose, some more details>
+			
+			transactionDate: <transferd_date>
+			tranferedAmt: <money>
+		}
+	]
+
+
+Events
+========
+
+	Event_Name: <Event Name>
+	eventid: <id>
+	date:<for date>,
+	isTournament: <true> || <false>
