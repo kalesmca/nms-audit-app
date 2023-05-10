@@ -4,13 +4,20 @@ DB Requirements
 MemberList
 ===========
 memberId
-memberType: "MEMBER" || "DONAR" || OTHERS
+memberType: "MEMBER" || "DONAR" || OTHERS || Students
 name: <Member Name> || <Donar Name> || <other names>
 dob:<date of birth>
 mobileNumber: <contact>
 email: <email>
 bloodGroup:
 native:
+
+if(Students)
+{
+	joiningDate
+}
+Status: Active||De-Active
+adminRights:""
 
 Transactions
 ===========
@@ -19,15 +26,36 @@ Transactions
 			memberId: <credit or debit belongs to one person>
 			transaction_id
 			transactionTYpe: <Credit> || <Debit>
-			transactionFor: if(Credit> => <membership> || <donation> || <other>
+			transactionFor: if(Credit> => <membership> || <donation> || <other> || Student_Fee
 			
-			=> Event is an object => it's should value and ID and eventDate
-		    event: if(membership) =>  <mothly_membership>  else if(donation) => <donation_for_event> else=> <other>   
+
+			if(Donation)
+			EventID => EventForDonar || EventForMember
+
+			if(EventForDonar)
+			Amount => 
+			if(EventForMember)
+				=> RequiredAmount
+				=> Amount
+				=> PaidAmount
+				=> PendingAmt
+
+			date:
+			creditedBy:
+			transactionMode: UPI || cash || OTHERS
+			if UPI => UPI Number(mobile) => if Cash => receviedMemerId => comments
+
+
+			
+
+			
 if(Debit) event: EVENTS || OTHERS
 			comments: <we can add what purpose, some more details>
 			
 			transactionDate: <transferd_date>
 			tranferedAmt: <money>
+			memberId: 
+
 		}
 	]
 
@@ -39,3 +67,8 @@ Events
 	eventid: <id>
 	date:<for date>,
 	isTournament: <true> || <false>
+	MemberDemandAmt:
+	eventType: credit|| Debit
+	if(Debit)
+		=> subEvents[it could be an array of object {id , name}]
+	
