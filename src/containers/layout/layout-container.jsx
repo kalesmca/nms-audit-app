@@ -1,12 +1,16 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useContext } from 'react';
 // import HeaderComponent from './components/header';
 // import SideBarComponent from './components/sidebar';
 import "../../index.css";
+import ModalComponent from '../../components/modal/modalComponents';
+import { PopupContext } from '../../utils/context';
+
 
 import { Outlet, Link } from "react-router-dom";
 import { auth } from '../../firebase-config';
 
 const LayoutContainer = () => {
+    const {popupFlag, setPopupFlag} = useContext(PopupContext)
     useEffect(()=>{
         console.log(auth?.currentUser?.photoURL);
         
@@ -61,6 +65,7 @@ const LayoutContainer = () => {
                 
                 <div className="container">
                     <Outlet />
+                    <ModalComponent showModal={popupFlag} close={setPopupFlag}/>
                 </div>
             </div>
         </div>

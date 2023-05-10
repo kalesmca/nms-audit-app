@@ -1,38 +1,64 @@
-import React,{useEffect, useState} from "react";
-import "./member.scss";
+import React,{useEffect, useState, useContext} from "react";
+import { getUserList } from '../../redux/actions/user';
 import {useSelector, useDispatch} from 'react-redux';
-import { bloodGroup, userTypes } from '../../constants/config';
+import { bloodGroup, userTypes, initUser } from '../../constants/config';
 import { useNavigate } from 'react-router-dom';
 import {addUser} from '../../redux/actions/user';
+import {updateUser} from '../../redux/API/apiService';
+import { PopupContext } from "../../utils/context";
+
+import "./member.scss";
 
 
-const initUser = {
-    name: "",
-    userType: userTypes[0],
-    native: "",
-    mobile:"",
-    email:"",
-    dob : new Date(),
-    bloodGroup: bloodGroup[0]
-
-}
 const MemberInfoComponent = () => {
+    const {setPopupFlag, setComponentName, user, setUser} = useContext(PopupContext);
+
     const applicationState = useSelector((state)=>state);
-    const [userObj, setUserObj] = useState(initUser)
+    console.log('user ::' ,user)
+    const [userObj, setUserObj] = useState(user)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(()=>{
         console.log(applicationState, userObj)
-    })
+        setUserObj(user)
+    },[user])
+
+    const updateUserData = async() =>{
+        await updateUser(userObj);
+        dispatch(getUserList())
+        setPopupFlag(false)
+
+
+    }
 
     const saveUser = async() =>{
         await dispatch(addUser(userObj));
+        setUser(initUser)
         navigate('/member-list')
+    }
+
+    
+    const openPopup = () =>{
+        setComponentName("memberComponent");
+        setPopupFlag(true)
+    }
+    const eventPopup = () =>{
+        setComponentName("eventComponent");
+        setPopupFlag(true)
+    }
+    const closePopup =()=>{
+        setPopupFlag(false)
+
     }
     return (
         <div>
             <div className="credit-container">
             <div>NMS- Member </div>
+            <div>
+                <button onClick={()=>{openPopup()}}>Popup</button>
+                <button onClick={()=>{eventPopup()}}>Event</button>
+
+            </div>
             
                 <div className="input-container">
                     <label>Name :</label>
@@ -91,7 +117,9 @@ const MemberInfoComponent = () => {
                         }
                     </select>
                 </div>
-                <input type="submit" className="input-submit" value="Submit" onClick={()=>{saveUser()}}/>
+                {
+                    userObj.id ? (<input type="submit" className="input-submit" value="Update" onClick={()=>{updateUserData()}}/>): (<input type="submit" className="input-submit" value="Submit" onClick={()=>{saveUser()}}/>)
+                }<input type="submit" className="input-submit" value="Cancel" onClick={()=>{closePopup()}}/>)
             </div>
         </div>
     )

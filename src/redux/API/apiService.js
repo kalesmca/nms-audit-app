@@ -1,5 +1,7 @@
 // import axios from "axios";
 import { db } from "../../firebase-config";
+import {DB} from '../../constants/config';
+
 import {
     collection,
     getDocs,
@@ -12,7 +14,7 @@ import { async } from "@firebase/util";
 
 
 export const  getUserList = async() =>{
-  const usersCollectionRef = collection(db, "users");
+  const usersCollectionRef = collection(db, DB.USERS);
 
   const data = await getDocs(usersCollectionRef);
   const dataList = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
@@ -21,12 +23,9 @@ export const  getUserList = async() =>{
 }
 
 export const  updateUser = async(newObj) =>{
-  if(localStorage.getItem("adminRights") === "*****"){
-    const userDoc = doc(db, "users", newObj.id);
+    const userDoc = doc(db, DB.USERS, newObj.id);
     await updateDoc(userDoc, newObj); 
-  } else {
-    console.log("you can't access")
-  }
+  
      
 }
 
