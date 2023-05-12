@@ -10,6 +10,8 @@
     visibility: visible;
     margin-left: 10%;
     margin-top: 50px;
+    z-index: 5;
+    position: fixed;
 }
 .modal-off{
     display: none;

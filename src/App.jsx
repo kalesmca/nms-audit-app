@@ -8,35 +8,42 @@ import NotFoundComponent from "./containers/not-found/NotFoundComponent";
 import LoginComponent from "./containers/login/loginComponent";
 import CreditComponent from "./containers/credit/creditComponent";
 import DebitComponent from "./containers/debit/debitComponent";
-import { PopupContext } from './utils/context';
+import EventList from "./containers/event/eventList";
+import { PopupContext, EventContext } from './utils/context';
 import './App.scss';
-import {initUser} from './constants/config';
+import { initUser, initEvent } from './constants/config';
 
 export default () => {
   const [popupFlag, setPopupFlag] = useState(false);
   const [componentName, setComponentName] = useState("");
   const [user, setUser] = useState(initUser);
+  const [event, setEvent] = useState(initEvent);
 
   return (
     <BrowserRouter >
       <PopupContext.Provider value={{ popupFlag, setPopupFlag, componentName, setComponentName, user, setUser }}>
 
+        <EventContext.Provider value={{event, setEvent}}>
+          <div className="w-100">
+            <Routes>
+              <Route path="/" element={<LayoutContainer />}>
+                <Route index element={<LoginComponent />} />
+                <Route path="dashboard" element={<DashboardComponent />} />
+                <Route path="credit" element={<CreditComponent />} />
+                <Route path="debit" element={<DebitComponent />} />
+                <Route path="events" element={<EventList />} />
 
-        <div className="w-100">
-          <Routes>
-            <Route path="/" element={<LayoutContainer />}>
-              <Route index element={<LoginComponent />} />
-              <Route path="dashboard" element={<DashboardComponent />} />
-              <Route path="credit" element={<CreditComponent />} />
-              <Route path="debit" element={<DebitComponent />} />
+                <Route path="member-list" element={<MemberListComponent />} />
+                <Route path="member-info" element={<MemberInfoComponent />} />
+                <Route path="*" element={<NotFoundComponent />} />
 
-              <Route path="member-list" element={<MemberListComponent />} />
-              <Route path="member-info" element={<MemberInfoComponent />} />
-              <Route path="*" element={<NotFoundComponent />} />
-            </Route>
-          </Routes>
-          {/* <LayoutContainer /> */}
-        </div>
+              </Route>
+            </Routes>
+            {/* <LayoutContainer /> */}
+          </div>
+
+        </EventContext.Provider>
+
       </PopupContext.Provider>
     </BrowserRouter>
   );

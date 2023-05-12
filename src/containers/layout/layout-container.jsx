@@ -59,13 +59,20 @@ const LayoutContainer = () => {
                                 <Link to="/debit">Debit Amount</Link>
                             </div>
 
+                            <div>
+                                <i className="fas fa-chart-line"></i>
+                                <Link to="/events">Events</Link>
+                            </div>
+
                         </nav>
 
                     </div>
                 
                 <div className="container">
-                    <Outlet />
+                    <div>
                     <ModalComponent showModal={popupFlag} close={setPopupFlag}/>
+                    </div>
+                    <Outlet />
                 </div>
             </div>
         </div>

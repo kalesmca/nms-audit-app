@@ -1,4 +1,7 @@
-.input-txt, select {
+.user-container {
+
+  .input-txt,
+  select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -7,7 +10,7 @@
     border-radius: 4px;
     box-sizing: border-box;
   }
-  
+
   .input-submit {
     width: 40%;
     float: left;
@@ -19,19 +22,21 @@
     border-radius: 4px;
     cursor: pointer;
   }
-  
+
   .input-submit:hover {
-    background-color: var(--secondary-color);;
+    background-color: var(--secondary-color);
+    ;
   }
-  
+
   .credit-container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
   }
 
-  .input-container{
+  .input-container {
     width: 40%;
     float: left;
     margin: 20px;
   }
+}

@@ -52,13 +52,13 @@ const MemberInfoComponent = () => {
     }
     return (
         <div>
-            <div className="credit-container">
+            <div className="user-container">
             <div>NMS- Member </div>
-            <div>
+            {/* <div>
                 <button onClick={()=>{openPopup()}}>Popup</button>
                 <button onClick={()=>{eventPopup()}}>Event</button>
 
-            </div>
+            </div> */}
             
                 <div className="input-container">
                     <label>Name :</label>
