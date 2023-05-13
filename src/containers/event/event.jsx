@@ -1,32 +1,37 @@
 import React, { useState, useContext, useEffect } from "react";
 import { EventContext, PopupContext } from '../../utils/context';
-import { eventTypes } from '../../constants/config'
+import { eventTypes, initEvent } from '../../constants/config'
 import {getdynamicId} from '../../utils/dateUtil';
+import {useSelector, useDispatch} from 'react-redux';
+import {addEvent, getEventList} from '../../redux/actions/event';
 import './event.scss';
 
 const EventComponent = () => {
-    const { event } = useContext(EventContext);
+    const { event, setEvent } = useContext(EventContext);
     const {setPopupFlag} = useContext(PopupContext)
     const [eventObj, setEventObj] = useState(event);
+    const dispatch = useDispatch()
     useEffect(()=>{
         console.log(eventObj)
-    })
+        setEvent(event)
+    },[event])
     const closePopup = () =>{
+        setEventObj(initEvent)
         setPopupFlag(false);
     }
     const updateEvent = () =>{
 
     }
     const saveEvent = () =>{
+        dispatch(addEvent(eventObj))
+        dispatch(getEventList())
+        setEventObj(initEvent)
+        setPopupFlag(false);
 
     }
     const addMoreSubEvent = () =>{
         if(eventObj.subEventList[eventObj.subEventList.length-1].name){
             let obj = {id: getdynamicId(), name:""}
-            // let tempEventObj = eventObj;
-            // tempEventObj.subEventList.push(obj);
-            // setEventObj(tempEventObj)
-
             setEventObj({ ...eventObj, subEventList: [...eventObj.subEventList, obj] })
         }
     }

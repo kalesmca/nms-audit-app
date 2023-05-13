@@ -1,12 +1,30 @@
-import React,{useContext} from "react";
+import React,{useContext, useEffect} from "react";
 import "./events.scss";
-import { PopupContext } from "../../utils/context";
+import { PopupContext, EventContext } from "../../utils/context";
 import {useDispatch, useSelector} from 'react-redux';
+import {getEventList} from '../../redux/actions/event';
+import {initEvent} from '../../constants/config';
 
 const EventList = () =>{
     const {setPopupFlag, setComponentName} = useContext(PopupContext);
+    const {event, setEvent} = useContext(EventContext);
+    const dispatch = useDispatch();
+    const eventState = useSelector((state)=>state.events);
+    
+    useEffect(()=>{
+        dispatch(getEventList());
+    },[])
+    useEffect(()=>{
+        console.log('state:', eventState)
+    })
     const createPopupShow = () =>{
         setComponentName("eventComponent");
+        setEvent(initEvent)
+        setPopupFlag(true);
+    }
+    const openEventPopup = (eventData) =>{
+        setComponentName("eventComponent");
+        setEvent(eventData);
         setPopupFlag(true);
     }
     return(
@@ -27,17 +45,17 @@ const EventList = () =>{
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {userList.length ? userList.map((user, userIndex) => {
-                            return (<tr key={userIndex} onClick={()=>{viewUser(user)}}>
-                                <td>{user.name}</td>
-                                <td>{user.mobile}</td>
-                                <td>{user.email}</td>
-                                <td>Not implemented</td>
+                        {eventState?.eventList?.length ? eventState.eventList.map((event, eventIndex) => {
+                            return (<tr key={eventIndex} onClick={()=>{openEventPopup(event)}}>
+                                <td>{eventIndex+1}</td>
+                                <td>{event.eventName}</td>
+                                <td>{event.eventType}</td>
+                                <td>{event.eventDate}</td>
                             </tr>)
-                        }) :  */}
-                        <tr>
-                            <td colSpan={3}><center>No Data Found</center></td>
-                        </tr>
+                        }) : 
+                        (<tr>
+                            <td colSpan={4}><center>No Data Found</center></td>
+                        </tr>)}
                     </tbody>
                 </table>
             </div>

@@ -70,7 +70,10 @@ const LayoutContainer = () => {
                 
                 <div className="container">
                     <div>
-                    <ModalComponent showModal={popupFlag} close={setPopupFlag}/>
+                        {
+                            popupFlag ? (<ModalComponent showModal={popupFlag} close={setPopupFlag}/>) : ""
+
+                        }
                     </div>
                     <Outlet />
                 </div>

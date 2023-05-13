@@ -9,7 +9,7 @@ const events = (state=initState, action) =>{
     switch(action.type) {
         
         case UPDATE_EVENTS :{
-            return {...state, ...action.data}
+            return {...state, eventList:action.data}
         }
         
         default :{
