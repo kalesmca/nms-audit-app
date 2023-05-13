@@ -1,4 +1,6 @@
-#customers {
+.member-list-container{
+
+  #customers {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -20,3 +22,21 @@
     background-color: var(--primary-color);
     color: white;
   }
+
+  .query-container{
+    width: 20%;
+    float: left;
+    margin: 20px;
+
+    select {
+      width: 100%;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+  }
+}

@@ -9,6 +9,11 @@ export const userTypes = ["MEMBTER", "DONOR","STUDENT", "OTHER"]
 export const eventTypes = ["CREDIT", "DEBIT", "OTHER"]
 export const subEventDefault = {id:getdynamicId(),name:"DEFAULT"}
 
+export const defaultUserListQuery = {
+    userType: userTypes[1]
+
+}
+
 export const initUser = {
     name: "",
     userType: userTypes[0],
