@@ -4,6 +4,7 @@ import { eventTypes, initEvent } from '../../constants/config'
 import {getdynamicId} from '../../utils/dateUtil';
 import {useSelector, useDispatch} from 'react-redux';
 import {addEvent, getEventList} from '../../redux/actions/event';
+import {updateEvent} from '../../redux/API/apiService';
 import './event.scss';
 
 const EventComponent = () => {
@@ -19,8 +20,11 @@ const EventComponent = () => {
         setEventObj(initEvent)
         setPopupFlag(false);
     }
-    const updateEvent = () =>{
-
+    const updateEventObj = async() =>{
+        await updateEvent(eventObj)
+        dispatch(getEventList())
+        setEventObj(initEvent)
+        setPopupFlag(false);
     }
     const saveEvent = () =>{
         dispatch(addEvent(eventObj))
@@ -114,7 +118,7 @@ const EventComponent = () => {
                 </table>
 
                 {
-                    eventObj.id ? (<input type="submit" className="input-submit" value="Update" onClick={()=>{updateEvent()}}/>): (<input type="submit" className="input-submit" value="Submit" onClick={()=>{saveEvent()}}/>)
+                    eventObj.id ? (<input type="submit" className="input-submit" value="Update" onClick={()=>{updateEventObj()}}/>): (<input type="submit" className="input-submit" value="Submit" onClick={()=>{saveEvent()}}/>)
                 }<input type="submit" className="input-submit" value="Cancel" onClick={()=>{closePopup()}}/>
 
 

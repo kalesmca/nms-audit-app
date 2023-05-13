@@ -8,7 +8,7 @@ export const bloodGroup = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "Ot
 export const userTypes = ["MEMBTER", "DONOR","STUDENT", "OTHER"]
 export const eventTypes = ["CREDIT", "DEBIT", "OTHER"]
 export const subEventDefault = {id:getdynamicId(),name:"DEFAULT"}
-
+export const transactionModes = ["CASH", "UPI", "OTHERS"]
 export const defaultUserListQuery = {
     userType: userTypes[1]
 
@@ -32,5 +32,25 @@ export const initEvent = {
     isTournament: false,
     memberDemandAmt:0,
     subEventList:[subEventDefault]
+
+}
+
+export const initTransaction = {
+    transactionType: eventTypes[1],
+    selectedEventId:"",
+    userType: userTypes[0],
+    userId:"",
+    eventId:"",
+    subEventId:"",
+    currentPaidAmt:0,
+    requiredAmt:0,
+    pendingAmt:0,
+    totalAmt:0,
+    transactionDate:"",
+    transactionMode: transactionModes[0],
+    upiMobile:"",
+    receivedById:"",
+
+
 
 }

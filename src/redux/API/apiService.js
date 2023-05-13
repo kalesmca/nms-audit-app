@@ -29,6 +29,13 @@ export const  updateUser = async(newObj) =>{
      
 }
 
+export const  updateEvent = async(newObj) =>{
+  const userDoc = doc(db, DB.EVENTS, newObj.id);
+  await updateDoc(userDoc, newObj); 
+
+   
+}
+
 // const ApiService ={
 //     saveFund: async(param) =>{
 //         await axios.post('http://localhost:3000/customers', {

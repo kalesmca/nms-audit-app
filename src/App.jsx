@@ -6,8 +6,7 @@ import MemberListComponent from "./containers/memberlist/memberListComponent";
 import MemberInfoComponent from "./containers/member/memberInfoComponent";
 import NotFoundComponent from "./containers/not-found/NotFoundComponent";
 import LoginComponent from "./containers/login/loginComponent";
-import CreditComponent from "./containers/credit/creditComponent";
-import DebitComponent from "./containers/debit/debitComponent";
+import TransactionComponent from "./containers/credit/transactionComponent";
 import EventList from "./containers/event/eventList";
 import { PopupContext, EventContext } from './utils/context';
 import './App.scss';
@@ -29,8 +28,7 @@ export default () => {
               <Route path="/" element={<LayoutContainer />}>
                 <Route index element={<LoginComponent />} />
                 <Route path="dashboard" element={<DashboardComponent />} />
-                <Route path="credit" element={<CreditComponent />} />
-                <Route path="debit" element={<DebitComponent />} />
+                <Route path="transaction" element={<TransactionComponent />} />
                 <Route path="events" element={<EventList />} />
 
                 <Route path="member-list" element={<MemberListComponent />} />

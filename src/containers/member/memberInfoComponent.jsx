@@ -27,8 +27,6 @@ const MemberInfoComponent = () => {
         await updateUser(userObj);
         dispatch(getUserList())
         setPopupFlag(false)
-
-
     }
 
     const saveUser = async() =>{

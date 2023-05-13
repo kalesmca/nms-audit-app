@@ -1,8 +1,15 @@
 import React, {useState} from "react";
-import "./credit.scss";
+import "./transactionComponent.scss";
 import ModalComponent from "../../components/modal/modalComponents";
+import {userTypes, eventTypes, initTransaction, transactionModes} from '../../constants/config';
+import {useDispatch, useSelector} from 'react-redux';
 
-const CreditComponent = (props) => {
+
+const TransactionComponent = (props) => {
+    const applicationState = useSelector((state)=>state);
+    const dispatch = useDispatch();
+
+
     const [selectedMember, setSelectedMember] = useState("Surya")
     const [flag, setFlag] = useState(false);
     const closePopup = ()=>{
@@ -17,7 +24,7 @@ const CreditComponent = (props) => {
     }
     return (
         <div>
-            <div>Credit Component</div>
+            <div>Transaction</div>
             
             <div className="credit-container">
             <div className="input-container">
@@ -83,4 +90,4 @@ const CreditComponent = (props) => {
         </div>
     )
 }
-export default CreditComponent;
+export default TransactionComponent;

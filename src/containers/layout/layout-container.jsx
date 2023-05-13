@@ -5,12 +5,17 @@ import "../../index.css";
 import ModalComponent from '../../components/modal/modalComponents';
 import { PopupContext } from '../../utils/context';
 
+import { useNavigate } from 'react-router-dom';
 
 import { Outlet, Link } from "react-router-dom";
 import { auth } from '../../firebase-config';
 
 const LayoutContainer = () => {
     const {popupFlag, setPopupFlag} = useContext(PopupContext)
+    const navigate = useNavigate();
+    const navigation = (path) =>{
+        navigate(path);
+    }
     useEffect(()=>{
         console.log(auth?.currentUser?.photoURL);
         
@@ -39,28 +44,24 @@ const LayoutContainer = () => {
                         <nav>
 
                             <div className='link'>
-                                <i className="fas fa-home"></i>
+                                <i className="fas fa-home" onClick={()=>{navigation("/dashboard")}}></i>
                                 <Link to="/dashboard">Dashboard</Link>
                             </div>
                             <div>
-                                <i className="fas fa-address-card"></i>
+                                <i className="fas fa-address-card" onClick={()=>{navigation("/member-list")}}></i>
                                 <Link to="/member-list">User List</Link>
                             </div>
                             <div>
-                                <i className="fas fa-chart-line"></i>
+                                <i className="fas fa-chart-line" onClick={()=>{navigation("/member-info")}}></i>
                                 <Link to="/member-info">Create-User</Link>
                             </div>
                             <div>
-                                <i className="fas fa-chart-line"></i>
-                                <Link to="/credit">Credit Amount</Link>
+                                <i className="fas fa-chart-line" onClick={()=>{navigation("/transaction")}}></i>
+                                <Link to="/transaction">Amount Transaction</Link>
                             </div>
+                            
                             <div>
-                                <i className="fas fa-chart-line"></i>
-                                <Link to="/debit">Debit Amount</Link>
-                            </div>
-
-                            <div>
-                                <i className="fas fa-chart-line"></i>
+                                <i className="fas fa-chart-line" onClick={()=>{navigation("/events")}}></i>
                                 <Link to="/events">Events</Link>
                             </div>
 
