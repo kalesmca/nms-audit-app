@@ -65,6 +65,13 @@ const LayoutContainer = () => {
                                 <Link to="/events">Events</Link>
                             </div>
 
+                            <div>
+                                <i className="fas fa-chart-line" onClick={()=>{navigation("/transaction-list")}}></i>
+                                <Link to="/transaction-list">Transaction List</Link>
+                            </div>
+
+                            
+
                         </nav>
 
                     </div>

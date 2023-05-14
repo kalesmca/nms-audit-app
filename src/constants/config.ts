@@ -1,7 +1,8 @@
 import {getdynamicId} from '../utils/dateUtil';
 export const DB = {
     USERS: "users",
-    EVENTS: "events"
+    EVENTS: "events",
+    TRANSACTIONS:"/transactions"
 }
 
 export const bloodGroup = ["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-", "Other"]
@@ -37,16 +38,16 @@ export const initEvent = {
 
 export const initTransaction = {
     transactionType: eventTypes[1],
-    selectedEventId:"",
     userType: userTypes[0],
     userId:"",
     eventId:"",
+    selectedEvent: {},
     subEventId:"",
     currentPaidAmt:0,
     requiredAmt:0,
     pendingAmt:0,
     totalAmt:0,
-    transactionDate:"",
+    transactionDate:new Date(),
     transactionMode: transactionModes[0],
     upiMobile:"",
     receivedById:"",

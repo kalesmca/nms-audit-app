@@ -8,6 +8,7 @@ import NotFoundComponent from "./containers/not-found/NotFoundComponent";
 import LoginComponent from "./containers/login/loginComponent";
 import TransactionComponent from "./containers/credit/transactionComponent";
 import EventList from "./containers/event/eventList";
+import TransactionListComponent from "./containers/transactionList/transactionListComponent";
 import { PopupContext, EventContext } from './utils/context';
 import './App.scss';
 import { initUser, initEvent } from './constants/config';
@@ -30,10 +31,13 @@ export default () => {
                 <Route path="dashboard" element={<DashboardComponent />} />
                 <Route path="transaction" element={<TransactionComponent />} />
                 <Route path="events" element={<EventList />} />
+                <Route path="transaction-list" element={<TransactionListComponent />} />
+
 
                 <Route path="member-list" element={<MemberListComponent />} />
                 <Route path="member-info" element={<MemberInfoComponent />} />
                 <Route path="*" element={<NotFoundComponent />} />
+                
 
               </Route>
             </Routes>
