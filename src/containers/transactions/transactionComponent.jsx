@@ -10,8 +10,8 @@ import { EventContext, PopupContext } from '../../utils/context';
 
 const TransactionComponent = (props) => {
     const applicationState = useSelector((state) => state);
-    const userList = applicationState.user.userList;
-    const eventList = applicationState.events.eventList;
+    let userList = applicationState.user.userList;
+    let eventList = applicationState.events.eventList;
     const dispatch = useDispatch();
     const [transaction, setTransaction] = useState(initTransaction)
     const { event, setEvent } = useContext(EventContext);
@@ -27,17 +27,40 @@ const TransactionComponent = (props) => {
         console.log(transaction)
     })
     useEffect(() => {
-        const selectedEvents = eventList.filter((event) => event.id === transaction.eventId)
-        setTransaction({ ...transaction, selectedEvent: selectedEvents[0] })
+
+        
+
+        if(eventList?.length){
+            if(!transaction.eventId){
+                const filteredEvents = eventList.filter((event)=> event.eventType === eventTypes[0])
+
+                setTransaction({ ...transaction, eventId: filteredEvents[0].id, selectedEvent: filteredEvents[0], subEventId: filteredEvents[0].subEventList[0].id })
+            } else if(!transaction.subEventId) {
+                setTransaction({ ...transaction, subEventId: transaction.selectedEvent.subEventList[0].id })
+            }
+
+        }
+        
+        
 
     }, [eventList])
 
-    const onChangeEvent = (e) => {
+    // useEffect(()=>{
+    //     if(userList?.length){
+    //         if(!transaction.userId){
+    //             const users = userList.filter((user)=> user.userType === userTypes[0])
+    //             setTransaction({ ...transaction, userId: users[0].id, selectedUser: users[0] })
+    //         }
+    //     }
+    // }, [userList])
 
+    const onChangeEvent = (e) => {
         const selectedEvents = eventList.filter((event) => event.id === e.target.value)
         setTransaction({ ...transaction, eventId: e.target.value, selectedEvent: selectedEvents[0] })
-
-
+    }
+    const onChangeUser = (e)=>{
+        const selectedUser = userList.filter((user) => user.id === e.target.value)
+        setTransaction({ ...transaction, userId: e.target.value, selectedUser: selectedUser[0] })
     }
     const onChangeSubEvent = (e) => {
         if (e.target.value === "ADD_NEW_SUB_EVENT") {
@@ -49,12 +72,24 @@ const TransactionComponent = (props) => {
             setTransaction({ ...transaction, subEventId: e.target.value })
         }
     }
-    const saveTransaction = () =>{
-        dispatch(addTransaction(transaction))
+    const saveTransaction = async() =>{
+        
+        await dispatch(addTransaction(transaction))
         dispatch(getTrasactionList())
         setTransaction(initTransaction)
         setPopupFlag(false);
 
+    }
+    const onChangeAmt = (e) => {
+
+        if (userList?.length) {
+            if (!transaction.userId) {
+                const users = userList.filter((user) => user.userType === userTypes[0])
+                setTransaction({ ...transaction, userId: users[0].id, selectedUser: users[0], totalAmt: e.target.value })
+            }else {
+                setTransaction({ ...transaction, totalAmt: e.target.value })
+            }
+        } 
     }
     return (
         <div>
@@ -122,11 +157,11 @@ const TransactionComponent = (props) => {
                 </div>
                 <div className="input-container">
                     <label >Amount</label>
-                    <input type="number" className="input-txt" value={transaction.totalAmt} onChange={(e) => { setTransaction({ ...transaction, totalAmt: e.target.value }) }} />
+                    <input type="number" className="input-txt" value={transaction.totalAmt} onChange={(e) => { onChangeAmt(e)}} />
                 </div>
                 <div className="input-container">
                     <label >{transaction.userType} LIST</label>
-                    <select value={transaction.userId} onChange={(e) => { setTransaction({ ...transaction, userId: e.target.value }) }}>
+                    <select value={transaction.userId} onChange={(e) => { onChangeUser(e) }}>
                         {
                             userList?.length ? userList.map((user, userIndex) => {
                                 if (user.userType === transaction.userType) {

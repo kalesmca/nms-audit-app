@@ -6,7 +6,7 @@ import MemberListComponent from "./containers/memberlist/memberListComponent";
 import MemberInfoComponent from "./containers/member/memberInfoComponent";
 import NotFoundComponent from "./containers/not-found/NotFoundComponent";
 import LoginComponent from "./containers/login/loginComponent";
-import TransactionComponent from "./containers/credit/transactionComponent";
+import TransactionComponent from "./containers/transactions/transactionComponent";
 import EventList from "./containers/event/eventList";
 import TransactionListComponent from "./containers/transactionList/transactionListComponent";
 import { PopupContext, EventContext } from './utils/context';

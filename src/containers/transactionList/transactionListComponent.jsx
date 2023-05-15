@@ -1,17 +1,31 @@
 
 import React,{useState, useEffect, useContext} from "react"
 import "./transactionList.scss";
+import {useDispatch, useSelector} from 'react-redux';
+import {getTrasactionList} from '../../redux/actions/transaction';
 
 
 const TransactionListComponent = () =>{
+    const dispatch = useDispatch();
+    const applicationState = useSelector((state) => state);
+    let transactionListState = applicationState?.transactions?.transactionList;
+
+    const [transactionList, setTransactionList] = useState(transactionListState);
+    useEffect(()=>{
+        dispatch(getTrasactionList());
+    },[])
+
+    useEffect(()=>{
+        console.log('transactionList ::', transactionList)
+    })
     return(
-        <div>
+        <div className="transaction-list-container">
             TransactionList Components
             {/* <table id="customers">
                     <thead>
                         <tr>
                             <th>SNO</th>
-                            <th>Mobile </th>
+                            <th>Event </th>
                             <th>Email</th>
                             <th>Due Status</th>
                         </tr>
