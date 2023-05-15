@@ -11,7 +11,9 @@ export const eventTypes = ["CREDIT", "DEBIT", "OTHER"]
 export const subEventDefault = {id:getdynamicId(),name:"DEFAULT"}
 export const transactionModes = ["CASH", "UPI", "OTHERS"]
 export const defaultUserListQuery = {
-    userType: userTypes[1]
+    userType: userTypes[0],
+    event: "ALL",
+    subEvent: "ALL"
 
 }
 const today = new Date()
