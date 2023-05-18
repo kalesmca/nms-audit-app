@@ -26,6 +26,7 @@ const MemberInfoComponent = () => {
     const updateUserData = async() =>{
         await updateUser(userObj);
         dispatch(getUserList())
+        setUser(initUser)
         setPopupFlag(false)
     }
 
@@ -36,16 +37,9 @@ const MemberInfoComponent = () => {
     }
 
     
-    const openPopup = () =>{
-        setComponentName("memberComponent");
-        setPopupFlag(true)
-    }
-    const eventPopup = () =>{
-        setComponentName("eventComponent");
-        setPopupFlag(true)
-    }
     const closePopup =()=>{
         setPopupFlag(false)
+        setUser(initUser)
 
     }
     return (

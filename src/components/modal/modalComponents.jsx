@@ -22,7 +22,7 @@ const ModalComponent = (props) =>{
   }
   
   return (<div className={props.showModal ? "modal": "modal-off"} id="modal">
-    <div onClick={()=>{setPopupFlag(false)}}>X</div>
+    {/* <div onClick={()=>{setPopupFlag(false)}}>X</div> */}
      <div className="content">
        {/* <MemberInfoComponent/> */}
        {
